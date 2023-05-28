@@ -51,7 +51,7 @@ pipeline {
                     script {
                     sshagent(credentials: ['k3s']) {
                         sh "ssh vagrant@192.168.56.10"
-                        sh "date"
+                        sh "helm version"
                 }}
             }
         }
