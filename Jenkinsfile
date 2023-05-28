@@ -49,7 +49,7 @@ pipeline {
         stage('SSH to Kubernetes Server') {
             steps {
                     sshagent(credentials: ['k3s']) {
-                        sh "ssh k3s"
+                        sh "ssh vagrant@192.168.56.10"
                 }
             }
         }
