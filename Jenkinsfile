@@ -17,6 +17,15 @@ pipeline {
             }
         }
 
+        stage('Build Producer Docker Image') {
+            steps {
+                dir('consumer') {
+                    // Build the Docker image
+                    sh 'docker build -t consumer .'
+                }
+            }
+        }
+
         // Add more stages for subsequent steps as needed
     }
 }
