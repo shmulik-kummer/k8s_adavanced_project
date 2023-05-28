@@ -8,31 +8,38 @@ pipeline {
             }
         }
 
-        stage('Build Producer Docker Image') {
+        stage('Build Docker Image - Producer') {
             steps {
                 dir('producer') {
-                    // Build the Docker image
-                    sh 'docker build -t producer .'
+                    // Build the Docker image for the producer
+                    sh 'docker build -t kummer/producer .'
                 }
             }
         }
 
-        stage('Build Consumer Docker Image') {
+        stage('Push Docker Image - Producer') {
+            steps {
+                // Push the Docker image to Docker Hub
+                sh 'docker push kummer/producer'
+            }
+        }
+
+        stage('Build Docker Image - Consumer') {
             steps {
                 dir('consumer') {
-                    // Build the Docker image
-                    sh 'docker build -t consumer .'
+                    // Build the Docker image for the consumer
+                    sh 'docker build -t kummer/consumer .'
                 }
+            }
+        }
+
+        stage('Push Docker Image - Consumer') {
+            steps {
+                // Push the Docker image to Docker Hub
+                sh 'docker push kummer/consumer'
             }
         }
 
         // Add more stages for subsequent steps as needed
     }
 }
-
-
-
-
-
-
-
