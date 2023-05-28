@@ -19,8 +19,10 @@ pipeline {
 
         stage('Push Docker Image - Producer') {
             steps {
-                // Push the Docker image to Docker Hub
-                sh 'docker push kummer/producer'
+                withRegistry([credentialsId: 'dockerhub', url: 'https://index.docker.io/v1/']) {
+                    // Push the Docker image to Docker Hub
+                    sh 'docker push kummer/producer'
+                }
             }
         }
 
@@ -35,8 +37,10 @@ pipeline {
 
         stage('Push Docker Image - Consumer') {
             steps {
-                // Push the Docker image to Docker Hub
-                sh 'docker push kummer/consumer'
+                withRegistry([credentialsId: 'dockerhub', url: 'https://index.docker.io/v1/']) {
+                    // Push the Docker image to Docker Hub
+                    sh 'docker push kummer/consumer'
+                }
             }
         }
 
